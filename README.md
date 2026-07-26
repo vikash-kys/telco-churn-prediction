@@ -11,7 +11,7 @@ This repository contains a full Data Science portfolio project analyzing Telco c
 
 ## Viewing the Analysis
 
-You can view the full interactive analysis by deploying this repository to GitHub Pages, or simply by opening the `index.html` file in any web browser.
+You can view the full interactive analysis live at [https://vikash-kys.github.io/telco-churn-prediction/](https://vikash-kys.github.io/telco-churn-prediction/).
 
 ## Running Locally
 

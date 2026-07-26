@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telco Customer Churn &mdash; Model Comparison</title>
+<title>Telco Customer Churn, Model Comparison</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -462,7 +462,6 @@
 
   <aside class="sidebar">
     <div class="brand">
-      <div class="brand-mark">C</div>
       <div class="brand-name">Telco Churn<br>Model Comparison</div>
     </div>
     <div class="brand-sub">Applied classification &middot; portfolio notebook</div>
@@ -506,7 +505,7 @@
     <div class="hero">
       <div class="eyebrow"><span class="dot"></span> Binary Classification &middot; Customer Retention</div>
       <h1 class="page-title">Predicting Telco Customer <em>Churn</em></h1>
-      <p class="subtitle">A comparison of Logistic Regression, Gaussian Naive Bayes, and an RBF-kernel Support Vector Machine on the IBM Telco Customer Churn dataset &mdash; with the statistics behind every step.</p>
+      <p class="subtitle">A comparison of Logistic Regression, Gaussian Naive Bayes, and an RBF-kernel Support Vector Machine on the IBM Telco Customer Churn dataset, with the statistics behind every step.</p>
 
       <div class="meta-row">
         <div class="meta-item"><strong>7,043</strong>customers</div>
@@ -539,8 +538,8 @@
       <section class="block" id="abstract">
   <div class="section-kicker"><span class="snum">00</span><span class="sline"></span></div>
   <h2 class="section-title">Abstract</h2>
-  <p class="lead">Customer churn &mdash; the point at which a subscriber cancels their service &mdash; is one of the most expensive problems a subscription business can have, because acquiring a new customer typically costs far more than keeping an existing one. This project builds and compares three classification models that predict, from a customer's account and service profile, whether they are likely to leave a fictional telecom provider.</p>
-  <p>The workflow follows a standard supervised learning pipeline: load and clean the raw records, engineer a numerical feature space through scaling and one-hot encoding, split the data with stratification to preserve class balance, and train three deliberately different algorithms &mdash; <strong class="hl">Logistic Regression</strong>, <strong class="hl">Gaussian Naive Bayes</strong>, and a <strong class="hl">Support Vector Machine with an RBF kernel</strong> &mdash; on identical folds. Every model is scored on accuracy, precision, recall, F1, and ROC-AUC so that the trade-offs between them are visible rather than assumed.</p>
+  <p class="lead">Customer churn, the point at which a subscriber cancels their service, is one of the most expensive problems a subscription business can have, because acquiring a new customer typically costs far more than keeping an existing one. This project builds and compares three classification models that predict, from a customer's account and service profile, whether they are likely to leave a fictional telecom provider.</p>
+  <p>The workflow follows a standard supervised learning pipeline: load and clean the raw records, engineer a numerical feature space through scaling and one-hot encoding, split the data with stratification to preserve class balance, and train three deliberately different algorithms, <strong class="hl">Logistic Regression</strong>, <strong class="hl">Gaussian Naive Bayes</strong>, and a <strong class="hl">Support Vector Machine with an RBF kernel</strong>, on identical folds. Every model is scored on accuracy, precision, recall, F1, and ROC-AUC so that the trade-offs between them are visible rather than assumed.</p>
   <p>The headline finding is not that one model is universally "best," but that each optimizes a different notion of correctness: Naive Bayes catches the most churners at the cost of many false alarms, Logistic Regression gives the steadiest overall balance, and the SVM trades recall for precision. Section 07 walks through exactly why, using the confusion matrices and metric charts produced during evaluation.</p>
 </section>
 
@@ -548,13 +547,13 @@
   <div class="section-kicker"><span class="snum">01</span><span class="sline"></span></div>
   <h2 class="section-title">The Dataset</h2>
   <p>The data comes from the <strong class="hl">Telco Customer Churn</strong> dataset, originally distributed as an IBM Cognos sample dataset and mirrored on Kaggle by user <em>blastchar</em> at <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank" rel="noopener">kaggle.com/datasets/blastchar/telco-customer-churn</a>. In the notebook it is pulled programmatically with <code>kagglehub.dataset_download("blastchar/telco-customer-churn")</code> rather than a manual download, so the analysis always starts from the canonical file.</p>
-  <p>The dataset describes <strong class="hl">7,043 customers</strong> of a fictional telecommunications company across <strong class="hl">21 columns</strong>. Each row is one customer; the target column, <code>Churn</code>, records whether that customer left during the most recent billing period. Roughly a quarter of the customers in the dataset churned, which already tells us something important before any modeling begins &mdash; the classes are imbalanced, so accuracy alone will be a misleading yardstick and recall and precision need to carry more of the weight later on.</p>
+  <p>The dataset describes <strong class="hl">7,043 customers</strong> of a fictional telecommunications company across <strong class="hl">21 columns</strong>. Each row is one customer; the target column, <code>Churn</code>, records whether that customer left during the most recent billing period. Roughly a quarter of the customers in the dataset churned, which already tells us something important before any modeling begins, the classes are imbalanced, so accuracy alone will be a misleading yardstick and recall and precision need to carry more of the weight later on.</p>
 
   <h4 class="mini-title">What the columns describe</h4>
   <div class="feature-grid">
     <div class="feature-card">
       <h5>Demographics</h5>
-      <p>gender, SeniorCitizen, Partner, Dependents &mdash; who the customer is.</p>
+      <p>gender, SeniorCitizen, Partner, Dependents, who the customer is.</p>
     </div>
     <div class="feature-card">
       <h5>Account tenure &amp; billing</h5>
@@ -562,7 +561,7 @@
     </div>
     <div class="feature-card">
       <h5>Core service</h5>
-      <p>PhoneService, MultipleLines, InternetService &mdash; DSL, fiber, or none.</p>
+      <p>PhoneService, MultipleLines, InternetService, DSL, fiber, or none.</p>
     </div>
     <div class="feature-card">
       <h5>Add-on services</h5>
@@ -570,17 +569,17 @@
     </div>
     <div class="feature-card">
       <h5>Identifier</h5>
-      <p>customerID &mdash; a unique key with no predictive value, dropped before modeling.</p>
+      <p>customerID, a unique key with no predictive value, dropped before modeling.</p>
     </div>
     <div class="feature-card">
       <h5>Target</h5>
-      <p>Churn &mdash; Yes / No, recoded to 1 / 0 for the classifiers.</p>
+      <p>Churn, Yes / No, recoded to 1 / 0 for the classifiers.</p>
     </div>
   </div>
 
   <div class="callout">
     <span class="callout-label">Why this dataset works well for a churn study</span>
-    <p>It mixes categorical, ordinal, and continuous features in roughly the proportions a real telecom CRM export would have, and its churn signal is genuinely tied to interpretable business levers &mdash; contract length, add-on services, and payment method &mdash; rather than being random. That makes it a realistic stand-in for the kind of table a retention analytics team would actually work with.</p>
+    <p>It mixes categorical, ordinal, and continuous features in roughly the proportions a real telecom CRM export would have, and its churn signal is genuinely tied to interpretable business levers, contract length, add-on services, and payment method, rather than being random. That makes it a realistic stand-in for the kind of table a retention analytics team would actually work with.</p>
   </div>
 </section>
 
@@ -600,20 +599,20 @@ df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})</code></pre>
 
   <ol class="feature-list">
     <li><strong class="hl">Dropping the identifier.</strong> <code>customerID</code> is a unique string per row. It carries no signal about behavior, and one-hot encoding it would have exploded the feature space into thousands of useless dummy columns, so it is removed outright.</li>
-    <li><strong class="hl">Coercing TotalCharges to numeric.</strong> In the raw CSV, <code>TotalCharges</code> is stored as text, and a small number of brand-new customers (zero tenure) have a blank value instead of a number. <code>pd.to_numeric(..., errors="coerce")</code> converts everything it can and turns the unparseable blanks into <code>NaN</code>, which then get filled with the column's <strong>median</strong> rather than its mean &mdash; the median is robust to the right-skew that billing amounts typically have, so a few very high-spending customers don't drag the imputed value away from what's typical.</li>
+    <li><strong class="hl">Coercing TotalCharges to numeric.</strong> In the raw CSV, <code>TotalCharges</code> is stored as text, and a small number of brand-new customers (zero tenure) have a blank value instead of a number. <code>pd.to_numeric(..., errors="coerce")</code> converts everything it can and turns the unparseable blanks into <code>NaN</code>, which then get filled with the column's <strong>median</strong> rather than its mean, the median is robust to the right-skew that billing amounts typically have, so a few very high-spending customers don't drag the imputed value away from what's typical.</li>
     <li><strong class="hl">Encoding the target.</strong> <code>Churn</code> arrives as the strings <code>"Yes"</code> / <code>"No"</code>. Every classifier in this project expects a numeric target, so it is mapped to <span class="mono">1</span> (churned) and <span class="mono">0</span> (retained).</li>
   </ol>
 
   <div class="callout amber">
     <span class="callout-label">Why median, not mean, for imputation</span>
-    <p>Billing data is rarely symmetric &mdash; a handful of long-tenure, high-usage customers can pull the mean well above what a typical customer pays. The median is the value at the 50th percentile, so it represents a "typical" customer's total charges without being distorted by outliers, which matters when the value being filled in is standing in for brand-new customers with almost no billing history.</p>
+    <p>Billing data is rarely symmetric, a handful of long-tenure, high-usage customers can pull the mean well above what a typical customer pays. The median is the value at the 50th percentile, so it represents a "typical" customer's total charges without being distorted by outliers, which matters when the value being filled in is standing in for brand-new customers with almost no billing history.</p>
   </div>
 </section>
 
 <section class="block" id="engineering">
   <div class="section-kicker"><span class="snum">03</span><span class="sline"></span></div>
   <h2 class="section-title">Feature Engineering</h2>
-  <p>Once the data is clean, the columns still aren't in a shape any of the three models can consume directly &mdash; Logistic Regression and SVM need every input to be numeric and on a comparable scale, and none of the models can interpret a raw string like <code>"Fiber optic"</code>. The notebook handles this with a single <code>ColumnTransformer</code> that treats numeric and categorical columns differently in one coordinated step.</p>
+  <p>Once the data is clean, the columns still aren't in a shape any of the three models can consume directly, Logistic Regression and SVM need every input to be numeric and on a comparable scale, and none of the models can interpret a raw string like <code>"Fiber optic"</code>. The notebook handles this with a single <code>ColumnTransformer</code> that treats numeric and categorical columns differently in one coordinated step.</p>
 
   <div class="code-label">from the notebook</div>
   <pre><code>cat_features = X.select_dtypes(include="object").columns
@@ -627,18 +626,18 @@ preprocessor = ColumnTransformer(
 )</code></pre>
 
   <h4 class="mini-title">Standardizing the numeric columns</h4>
-  <p>tenure, MonthlyCharges, and TotalCharges live on completely different numeric ranges &mdash; tenure runs from 0&ndash;72 months, MonthlyCharges from roughly $18&ndash;$120, and TotalCharges into the thousands. Left alone, a model like Logistic Regression or SVM would implicitly treat the columns with larger raw numbers as more important, simply because of their scale. <code>StandardScaler</code> removes that bias by converting every value to a <strong>z-score</strong>: how many standard deviations above or below the column's own mean that value sits.</p>
+  <p>tenure, MonthlyCharges, and TotalCharges live on completely different numeric ranges, tenure runs from 0&ndash;72 months, MonthlyCharges from roughly $18&ndash;$120, and TotalCharges into the thousands. Left alone, a model like Logistic Regression or SVM would implicitly treat the columns with larger raw numbers as more important, simply because of their scale. <code>StandardScaler</code> removes that bias by converting every value to a <strong>z-score</strong>: how many standard deviations above or below the column's own mean that value sits.</p>
 
   <div class="eq-block">$$ z = \dfrac{x - \mu}{\sigma} $$</div>
   <p class="eq-caption">x is the raw value, &mu; the feature's mean, &sigma; its standard deviation. After transformation every numeric feature has mean 0 and standard deviation 1.</p>
 
   <h4 class="mini-title">One-hot encoding the categorical columns</h4>
-  <p>Columns like <code>Contract</code> (Month-to-month / One year / Two year) or <code>InternetService</code> (DSL / Fiber optic / No) are categories, not quantities &mdash; there's no meaningful "distance" between them the way there is between two tenure values. <code>OneHotEncoder</code> turns each category into its own binary column: 1 if a customer belongs to that category, 0 otherwise.</p>
-  <p>The encoder is configured with <code>drop="first"</code>, which removes one category per column from the resulting feature set. This avoids the <strong class="hl">dummy variable trap</strong>: if every category of a column got its own dummy, the dummies would sum to exactly 1 for every row, making that block of columns perfectly collinear with the model's intercept term. Dropping one category doesn't lose information &mdash; that category is still fully represented as the case where all of its sibling dummy columns read 0 &mdash; it simply keeps the design matrix full-rank.</p>
+  <p>Columns like <code>Contract</code> (Month-to-month / One year / Two year) or <code>InternetService</code> (DSL / Fiber optic / No) are categories, not quantities, there's no meaningful "distance" between them the way there is between two tenure values. <code>OneHotEncoder</code> turns each category into its own binary column: 1 if a customer belongs to that category, 0 otherwise.</p>
+  <p>The encoder is configured with <code>drop="first"</code>, which removes one category per column from the resulting feature set. This avoids the <strong class="hl">dummy variable trap</strong>: if every category of a column got its own dummy, the dummies would sum to exactly 1 for every row, making that block of columns perfectly collinear with the model's intercept term. Dropping one category doesn't lose information, that category is still fully represented as the case where all of its sibling dummy columns read 0, it simply keeps the design matrix full-rank.</p>
 
   <div class="callout">
     <span class="callout-label">Why one ColumnTransformer instead of two separate steps</span>
-    <p>Bundling both transformations into a single <code>ColumnTransformer</code>, and that transformer into a <code>Pipeline</code> alongside the classifier, means the exact same fitted scaler and encoder are reused on the test set and on any future data &mdash; there is no risk of accidentally fitting the scaler on the full dataset (which would leak test-set statistics into training) or of the train and test sets ending up with mismatched columns.</p>
+    <p>Bundling both transformations into a single <code>ColumnTransformer</code>, and that transformer into a <code>Pipeline</code> alongside the classifier, means the exact same fitted scaler and encoder are reused on the test set and on any future data, there is no risk of accidentally fitting the scaler on the full dataset (which would leak test-set statistics into training) or of the train and test sets ending up with mismatched columns.</p>
   </div>
 </section>
 
@@ -658,9 +657,9 @@ preprocessor = ColumnTransformer(
 
   <p>Three choices matter here:</p>
   <ul class="feature-list">
-    <li><strong class="hl">An 80 / 20 split.</strong> 20% of the 7,043 customers (roughly 1,409 rows) are set aside purely for testing &mdash; enough to give stable metric estimates without starving the models of training examples.</li>
+    <li><strong class="hl">An 80 / 20 split.</strong> 20% of the 7,043 customers (roughly 1,409 rows) are set aside purely for testing, enough to give stable metric estimates without starving the models of training examples.</li>
     <li><strong class="hl">Stratification on the target.</strong> Because churners make up roughly a quarter of the dataset, a plain random split could by chance produce a test set with a noticeably different churn rate than the training set. <code>stratify=y</code> forces both splits to preserve the same proportion of churned and retained customers, so the evaluation set is a fair, representative sample rather than a lucky or unlucky draw.</li>
-    <li><strong class="hl">A fixed random_state.</strong> Setting <code>random_state=42</code> makes the split reproducible &mdash; running the notebook again produces the exact same train/test partition, which matters when comparing three models against each other fairly.</li>
+    <li><strong class="hl">A fixed random_state.</strong> Setting <code>random_state=42</code> makes the split reproducible, running the notebook again produces the exact same train/test partition, which matters when comparing three models against each other fairly.</li>
   </ul>
 </section>
 
@@ -668,7 +667,7 @@ preprocessor = ColumnTransformer(
 <section class="block" id="modeling">
   <div class="section-kicker"><span class="snum">05</span><span class="sline"></span></div>
   <h2 class="section-title">The Three Models</h2>
-  <p>The notebook trains three classifiers that make very different assumptions about the data, on purpose &mdash; a linear probabilistic model, a generative probabilistic model, and a kernel-based margin model. Each is wrapped in its own <code>Pipeline</code> together with the same <code>preprocessor</code> from Section 03, so preprocessing is identical across all three and any difference in results comes from the algorithm itself.</p>
+  <p>The notebook trains three classifiers that make very different assumptions about the data, on purpose, a linear probabilistic model, a generative probabilistic model, and a kernel-based margin model. Each is wrapped in its own <code>Pipeline</code> together with the same <code>preprocessor</code> from Section 03, so preprocessing is identical across all three and any difference in results comes from the algorithm itself.</p>
 
   <div class="code-label">from the notebook</div>
   <pre><code>models = {
@@ -690,7 +689,7 @@ preprocessor = ColumnTransformer(
     <span class="model-tag">Linear &middot; Discriminative</span>
     <h4>Logistic Regression</h4>
     <div class="model-role">Models the probability of churn directly</div>
-    <p>Logistic Regression starts the same way linear regression does &mdash; a weighted sum of the input features &mdash; but instead of predicting a churn probability directly with that raw sum (which could run to any positive or negative number), it passes the sum through the <strong class="hl">sigmoid function</strong>, which squashes any real number into the range (0, 1).</p>
+    <p>Logistic Regression starts the same way linear regression does, a weighted sum of the input features, but instead of predicting a churn probability directly with that raw sum (which could run to any positive or negative number), it passes the sum through the <strong class="hl">sigmoid function</strong>, which squashes any real number into the range (0, 1).</p>
 
     <div class="eq-block">$$ z = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n \qquad\qquad \sigma(z) = \dfrac{1}{1 + e^{-z}} $$</div>
     <p class="eq-caption">z is the linear combination of every scaled/encoded feature; &sigma;(z), the sigmoid, is interpreted as P(Churn = 1 | x).</p>
@@ -700,43 +699,43 @@ preprocessor = ColumnTransformer(
     <div class="eq-block">$$ J(\beta) = -\dfrac{1}{n} \sum_{i=1}^{n} \Big[\, y_i \log(\hat y_i) + (1-y_i)\log(1-\hat y_i) \,\Big] $$</div>
     <p class="eq-caption">Predictions confidently wrong are penalized far more heavily than predictions that are only mildly off, which is what pushes the coefficients toward genuinely separating the two classes.</p>
 
-    <p>At prediction time, any customer with &sigma;(z) &ge; 0.5 is classified as likely to churn. Because the coefficients are directly interpretable &mdash; a positive &beta; on <code>MonthlyCharges</code> means higher bills push the probability of churn up, holding everything else constant &mdash; this model doubles as an explanatory tool, not just a predictive one.</p>
+    <p>At prediction time, any customer with &sigma;(z) &ge; 0.5 is classified as likely to churn. Because the coefficients are directly interpretable, a positive &beta; on <code>MonthlyCharges</code> means higher bills push the probability of churn up, holding everything else constant, this model doubles as an explanatory tool, not just a predictive one.</p>
   </div>
 
   <div class="model-card">
     <span class="model-tag">Probabilistic &middot; Generative</span>
     <h4>Gaussian Naive Bayes</h4>
     <div class="model-role">Asks: which class makes this customer's data most likely?</div>
-    <p>Naive Bayes flips the question around. Instead of learning a decision boundary directly, it estimates how the features are distributed <em>within each class</em> during training, then at prediction time asks: given this customer's feature values, which class &mdash; churned or retained &mdash; would have been more likely to generate them? That question is answered with <strong class="hl">Bayes' theorem</strong>:</p>
+    <p>Naive Bayes flips the question around. Instead of learning a decision boundary directly, it estimates how the features are distributed <em>within each class</em> during training, then at prediction time asks: given this customer's feature values, which class, churned or retained, would have been more likely to generate them? That question is answered with <strong class="hl">Bayes' theorem</strong>:</p>
 
     <div class="eq-block">$$ P(C \mid x) = \dfrac{P(x \mid C)\, P(C)}{P(x)} $$</div>
     <p class="eq-caption">The posterior probability of class C given the features x, in terms of the likelihood P(x|C), the prior P(C), and the evidence P(x).</p>
 
-    <p>The "naive" part is the assumption that every feature is conditionally independent of every other feature, given the class &mdash; i.e. knowing a customer's contract type tells the model nothing extra about their tenure, once churn status is already known. That assumption is rarely exactly true, but it lets the joint likelihood collapse into a simple product, which is what makes the model fast and stable even with many features:</p>
+    <p>The "naive" part is the assumption that every feature is conditionally independent of every other feature, given the class, i.e. knowing a customer's contract type tells the model nothing extra about their tenure, once churn status is already known. That assumption is rarely exactly true, but it lets the joint likelihood collapse into a simple product, which is what makes the model fast and stable even with many features:</p>
 
     <div class="eq-block">$$ P(x_1, \dots, x_n \mid C) = \prod_{i=1}^{n} P(x_i \mid C) $$</div>
 
     <p>Because the numeric features were standardized in preprocessing, the <strong>Gaussian</strong> variant models each numeric feature's likelihood within a class as a normal distribution, estimated from that class's own mean &mu;<sub>C</sub> and variance &sigma;&sup2;<sub>C</sub> in the training data:</p>
 
     <div class="eq-block">$$ P(x_i \mid C) = \dfrac{1}{\sqrt{2\pi\sigma_C^2}} \exp\!\left(-\dfrac{(x_i-\mu_C)^2}{2\sigma_C^2}\right) $$</div>
-    <p class="eq-caption">A customer is assigned to whichever class C maximizes P(C) &middot; &prod; P(x_i | C) &mdash; the class whose learned distribution best explains their profile.</p>
+    <p class="eq-caption">A customer is assigned to whichever class C maximizes P(C) &middot; &prod; P(x_i | C), the class whose learned distribution best explains their profile.</p>
   </div>
 
   <div class="model-card">
     <span class="model-tag">Kernel &middot; Margin-based</span>
-    <h4>Support Vector Machine &mdash; RBF Kernel</h4>
+    <h4>Support Vector Machine, RBF Kernel</h4>
     <div class="model-role">Finds the widest possible margin between churners and non-churners</div>
-    <p>A linear SVM looks for the hyperplane <em>w&middot;x + b = 0</em> that separates the two classes while maximizing the margin &mdash; the distance between the hyperplane and the nearest point of either class &mdash; because a wider margin tends to generalize better to unseen customers. Since real churn data is not linearly separable, the model also allows some points to sit on the wrong side of the margin, controlled by a penalty parameter C that trades off margin width against misclassification.</p>
+    <p>A linear SVM looks for the hyperplane <em>w&middot;x + b = 0</em> that separates the two classes while maximizing the margin, the distance between the hyperplane and the nearest point of either class, because a wider margin tends to generalize better to unseen customers. Since real churn data is not linearly separable, the model also allows some points to sit on the wrong side of the margin, controlled by a penalty parameter C that trades off margin width against misclassification.</p>
 
     <div class="eq-block">$$ \min_{w,\,b}\ \tfrac{1}{2}\lVert w \rVert^2 + C\sum_{i=1}^{n}\xi_i \qquad \text{s.t. } y_i(w\!\cdot\!x_i + b) \ge 1-\xi_i $$</div>
     <p class="eq-caption">&xi;<sub>i</sub> are slack variables that let a point violate the margin at a cost; C sets how heavily those violations are penalized.</p>
 
-    <p>Here the model is fit with an <strong class="hl">RBF (radial basis function) kernel</strong> rather than a plain linear boundary. The kernel trick lets the SVM operate as though it had mapped every customer into a much higher-dimensional space where a non-linear relationship &mdash; like "medium tenure and fiber internet and no tech support" &mdash; becomes linearly separable, without ever explicitly computing that mapping. It does this by replacing the dot product between two points with a similarity function:</p>
+    <p>Here the model is fit with an <strong class="hl">RBF (radial basis function) kernel</strong> rather than a plain linear boundary. The kernel trick lets the SVM operate as though it had mapped every customer into a much higher-dimensional space where a non-linear relationship, like "medium tenure and fiber internet and no tech support", becomes linearly separable, without ever explicitly computing that mapping. It does this by replacing the dot product between two points with a similarity function:</p>
 
     <div class="eq-block">$$ K(x, x') = \exp\!\left(-\gamma \lVert x - x' \rVert^2\right) $$</div>
     <p class="eq-caption">&gamma; controls how far the influence of a single training example reaches: a small &gamma; gives a smoother, more linear-feeling boundary; a large &gamma; lets the boundary curve tightly around individual points.</p>
 
-    <p>The final classifier is a weighted combination of kernel similarities to the <strong class="hl">support vectors</strong> &mdash; the training points closest to the boundary &mdash; rather than a single global weight per feature, which is what allows the RBF-kernel SVM to trace decision boundaries that a linear model like Logistic Regression cannot.</p>
+    <p>The final classifier is a weighted combination of kernel similarities to the <strong class="hl">support vectors</strong>, the training points closest to the boundary, rather than a single global weight per feature, which is what allows the RBF-kernel SVM to trace decision boundaries that a linear model like Logistic Regression cannot.</p>
   </div>
 </section>
 
@@ -761,13 +760,13 @@ preprocessor = ColumnTransformer(
   <div class="feature-grid">
     <div class="feature-card"><h5>True Positive (TP)</h5><p>Model predicted churn, and the customer really did churn.</p></div>
     <div class="feature-card"><h5>True Negative (TN)</h5><p>Model predicted no churn, and the customer stayed.</p></div>
-    <div class="feature-card"><h5>False Positive (FP)</h5><p>Model predicted churn, but the customer actually stayed &mdash; a false alarm.</p></div>
-    <div class="feature-card"><h5>False Negative (FN)</h5><p>Model predicted no churn, but the customer actually left &mdash; a missed churner.</p></div>
+    <div class="feature-card"><h5>False Positive (FP)</h5><p>Model predicted churn, but the customer actually stayed, a false alarm.</p></div>
+    <div class="feature-card"><h5>False Negative (FN)</h5><p>Model predicted no churn, but the customer actually left, a missed churner.</p></div>
   </div>
 
   <h4 class="mini-title">Accuracy</h4>
   <div class="eq-block">$$ \text{Accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN} $$</div>
-  <p class="eq-caption">The share of all predictions that were correct &mdash; but with roughly 3 in 4 customers not churning, a model that always predicts "stays" would already score around 73&ndash;74% on accuracy alone. That's why it's reported here but never trusted on its own.</p>
+  <p class="eq-caption">The share of all predictions that were correct, but with roughly 3 in 4 customers not churning, a model that always predicts "stays" would already score around 73&ndash;74% on accuracy alone. That's why it's reported here but never trusted on its own.</p>
 
   <h4 class="mini-title">Precision</h4>
   <div class="eq-block">$$ \text{Precision} = \dfrac{TP}{TP + FP} $$</div>
@@ -779,7 +778,7 @@ preprocessor = ColumnTransformer(
 
   <h4 class="mini-title">F1 Score</h4>
   <div class="eq-block">$$ F1 = 2 \cdot \dfrac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} $$</div>
-  <p class="eq-caption">The harmonic mean of precision and recall &mdash; it only stays high when both are reasonably high, which makes it a fairer single-number summary than accuracy when the classes are imbalanced.</p>
+  <p class="eq-caption">The harmonic mean of precision and recall, it only stays high when both are reasonably high, which makes it a fairer single-number summary than accuracy when the classes are imbalanced.</p>
 
   <h4 class="mini-title">ROC-AUC</h4>
   <p>Accuracy, precision, recall, and F1 all depend on the 0.5 probability cutoff used to turn a predicted probability into a Yes/No decision. <strong class="hl">ROC-AUC</strong> sidesteps that choice: it sweeps the decision threshold from 0 to 1, plots the <em>true positive rate</em> against the <em>false positive rate</em> at every threshold, and measures the area under that curve.</p>
@@ -788,7 +787,7 @@ preprocessor = ColumnTransformer(
 
   <div class="callout">
     <span class="callout-label">Why recall gets extra weight in this domain</span>
-    <p>In a churn-prevention context, the cost of the two error types is rarely symmetric. A false positive costs a discount coupon or a phone call to a customer who was never going to leave. A false negative costs the customer entirely &mdash; and the revenue that would have funded the retention offer in the first place. That asymmetry is why, in Section 07, recall is treated as at least as important as precision or raw accuracy when comparing the three models.</p>
+    <p>In a churn-prevention context, the cost of the two error types is rarely symmetric. A false positive costs a discount coupon or a phone call to a customer who was never going to leave. A false negative costs the customer entirely, and the revenue that would have funded the retention offer in the first place. That asymmetry is why, in Section 07, recall is treated as at least as important as precision or raw accuracy when comparing the three models.</p>
   </div>
 </section>
 
@@ -834,7 +833,7 @@ preprocessor = ColumnTransformer(
     <figcaption>Confusion matrices for Logistic Regression, Naive Bayes, and the RBF-kernel SVM on the held-out test set. Rows are actual class, columns are predicted class.</figcaption>
   </figure>
 
-  <p>Naive Bayes visibly predicts "churn" far more liberally than the other two models &mdash; it correctly catches the largest number of true churners, but at the cost of also flagging a large number of customers who were never going to leave, which is exactly what its low 42.7% precision reflects. The SVM sits at the other extreme: it is more conservative about calling a customer a churn risk, which keeps its false-positive count down but means it misses more than half of the customers who actually churn (recall of 47.6%). Logistic Regression lands in between, missing fewer churners than the SVM while raising fewer false alarms than Naive Bayes.</p>
+  <p>Naive Bayes visibly predicts "churn" far more liberally than the other two models, it correctly catches the largest number of true churners, but at the cost of also flagging a large number of customers who were never going to leave, which is exactly what its low 42.7% precision reflects. The SVM sits at the other extreme: it is more conservative about calling a customer a churn risk, which keeps its false-positive count down but means it misses more than half of the customers who actually churn (recall of 47.6%). Logistic Regression lands in between, missing fewer churners than the SVM while raising fewer false alarms than Naive Bayes.</p>
 
   <h3 class="sub-title">Metrics side by side</h3>
   <figure class="fig">
@@ -842,11 +841,11 @@ preprocessor = ColumnTransformer(
     <figcaption>All five metrics, grouped by model, computed on the identical test set and preprocessing pipeline.</figcaption>
   </figure>
 
-  <p>The bar chart makes the asymmetry between Naive Bayes and the other two models the clearest: its recall bar towers over the other models', while its precision and accuracy bars fall well below them. Logistic Regression and the SVM track each other fairly closely across accuracy, precision, and AUC, but diverge on recall &mdash; the metric that, per Section 06, tends to matter most for a retention use case.</p>
+  <p>The bar chart makes the asymmetry between Naive Bayes and the other two models the clearest: its recall bar towers over the other models', while its precision and accuracy bars fall well below them. Logistic Regression and the SVM track each other fairly closely across accuracy, precision, and AUC, but diverge on recall, the metric that, per Section 06, tends to matter most for a retention use case.</p>
 
   <div class="callout amber">
     <span class="callout-label">Why AUC tells a slightly different story than accuracy</span>
-    <p>Naive Bayes has the worst accuracy of the three models (65.6%) but the second-best AUC (0.809), close behind Logistic Regression's 0.842 and clearly ahead of the SVM's 0.793. That gap exists because AUC measures separating power across every possible decision threshold, while accuracy is locked to the default 0.5 cutoff. It suggests Naive Bayes' underlying probability estimates aren't badly calibrated so much as its default threshold is simply not well matched to this problem's class imbalance &mdash; a threshold other than 0.5 would likely improve its precision/recall balance without touching the model itself.</p>
+    <p>Naive Bayes has the worst accuracy of the three models (65.6%) but the second-best AUC (0.809), close behind Logistic Regression's 0.842 and clearly ahead of the SVM's 0.793. That gap exists because AUC measures separating power across every possible decision threshold, while accuracy is locked to the default 0.5 cutoff. It suggests Naive Bayes' underlying probability estimates aren't badly calibrated so much as its default threshold is simply not well matched to this problem's class imbalance, a threshold other than 0.5 would likely improve its precision/recall balance without touching the model itself.</p>
   </div>
 </section>
 
@@ -856,20 +855,20 @@ preprocessor = ColumnTransformer(
   <h2 class="section-title">Conclusion</h2>
   <p>No single model dominates on every metric, which is itself the finding worth taking away: the "best" model depends on what a retention team is optimizing for, not on which algorithm sounds most sophisticated.</p>
   <ul class="feature-list">
-    <li><strong class="hl">If the goal is a balanced, deployable default</strong> &mdash; reasonably few false alarms, a solid share of churners caught, and coefficients a business stakeholder can actually interpret &mdash; <strong class="hl">Logistic Regression</strong> is the strongest all-round choice here, leading on accuracy, precision, and AUC.</li>
+    <li><strong class="hl">If the goal is a balanced, deployable default</strong>, reasonably few false alarms, a solid share of churners caught, and coefficients a business stakeholder can actually interpret, <strong class="hl">Logistic Regression</strong> is the strongest all-round choice here, leading on accuracy, precision, and AUC.</li>
     <li><strong class="hl">If the goal is to miss as few churners as possible</strong>, and the cost of a false alarm (an unnecessary retention offer) is genuinely low compared to the cost of losing a customer outright, <strong class="hl">Naive Bayes'</strong> 86.6% recall makes it the more defensible choice, provided the business is prepared to act on a much longer list of flagged customers.</li>
-    <li><strong class="hl">The RBF-kernel SVM</strong>, in this configuration, did not clearly outperform the simpler Logistic Regression on any metric while being the most computationally expensive of the three to train &mdash; a reminder that a more flexible, non-linear model isn't automatically the better one for a given dataset and feature set.</li>
+    <li><strong class="hl">The RBF-kernel SVM</strong>, in this configuration, did not clearly outperform the simpler Logistic Regression on any metric while being the most computationally expensive of the three to train, a reminder that a more flexible, non-linear model isn't automatically the better one for a given dataset and feature set.</li>
   </ul>
-  <p>A natural next step beyond this comparison would be to move past the default 0.5 probability threshold &mdash; picking a threshold that reflects the actual cost ratio between a false positive and a false negative &mdash; and to inspect Logistic Regression's coefficients directly to see which specific services, contract types, or billing patterns are driving churn risk upward, turning this from a prediction exercise into an actionable retention strategy.</p>
+  <p>A natural next step beyond this comparison would be to move past the default 0.5 probability threshold, picking a threshold that reflects the actual cost ratio between a false positive and a false negative, and to inspect Logistic Regression's coefficients directly to see which specific services, contract types, or billing patterns are driving churn risk upward, turning this from a prediction exercise into an actionable retention strategy.</p>
 </section>
 
 <section class="block" id="references">
   <div class="section-kicker"><span class="snum">09</span><span class="sline"></span></div>
   <h2 class="section-title">References</h2>
   <ul class="feature-list">
-    <li><strong class="hl">Dataset:</strong> Telco Customer Churn, IBM sample dataset, hosted on Kaggle by blastchar &mdash; <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank" rel="noopener">kaggle.com/datasets/blastchar/telco-customer-churn</a>, retrieved programmatically via <code>kagglehub</code>.</li>
+    <li><strong class="hl">Dataset:</strong> Telco Customer Churn, IBM sample dataset, hosted on Kaggle by blastchar, <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank" rel="noopener">kaggle.com/datasets/blastchar/telco-customer-churn</a>, retrieved programmatically via <code>kagglehub</code>.</li>
     <li><strong class="hl">Libraries:</strong> pandas &amp; NumPy for data handling, scikit-learn for preprocessing (<code>StandardScaler</code>, <code>OneHotEncoder</code>, <code>ColumnTransformer</code>, <code>Pipeline</code>), modeling (<code>LogisticRegression</code>, <code>GaussianNB</code>, <code>SVC</code>) and evaluation metrics, matplotlib &amp; seaborn for visualization.</li>
-    <li><strong class="hl">Notebook:</strong> <code>Churn_prediction.ipynb</code> &mdash; the full, runnable source for every result shown on this page.</li>
+    <li><strong class="hl">Notebook:</strong> <code>Churn_prediction.ipynb</code>, the full, runnable source for every result shown on this page.</li>
   </ul>
 </section>
 
